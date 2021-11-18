@@ -13,14 +13,19 @@ pipeline {
             steps {
                 // Configuration changes for Dev
                 sh ' envr = $(cat userdata.txt)'
-                echo "envr = $envr"
+                
             }
          }
 
         stage('testing stage ') {
          steps {
-               echo 'testing pipe'
+               script {
+                readFile('userdata.txt')
+}
          }
         }
+        
+        
+        
     }
 }
