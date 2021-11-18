@@ -1,0 +1,1 @@
+ {'cmd': grep -ow dev userdata.txt, 'stdout': 'dev', 'stderr': '', 'rc': 0, 'start': '2021-11-18 12:02:03.772318', 'end': '2021-11-18 12:02:03.774938', 'delta': '0:00:00.002620', 'changed': True, 'stdout_lines': ['dev'], 'stderr_lines': [], 'failed': False} 

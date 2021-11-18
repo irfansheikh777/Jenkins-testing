@@ -1,20 +1,18 @@
----
-- hosts: localhost
-  vars:
-     env: "{{ lookup('file', 'userdata.txt') }}"
+---
+- hosts: "localhost"
   become: yes
   tasks:
-    - name: "Read file"
-      debug: env1 = "{{lookup('file', 'userdata.txt') }}"
-      register: env1
+    - name: find
+      shell: grep -ow 'ping' userdata.txt
+      register: presence
     - name: "docker compose up for dev"
-      shell: ls -lrt {{ env }}
-      when: env == "dev"
+      ansible.builtin.shell: docker-compose up  {{ presence }}
+      when: presence.stdout == "dev"
     - name: "docker compose up for prod"
-      ansible.builtin.shell: docker compose up -d {{ env }}
-      when: env == "prod"
+      ansible.builtin.shell: /usr/local/bin/docker-compose up -d {{ presence }}
+      when: presence.stdout == "ping"
     - name: "docker compose up for development"
-      ansible.builtin.shell: ls -lrt  {{ env }}
-      when: env == "staging"
+      ansible.builtin.shell: ls -lrt  {{ presence }}
+      when: presence == "staging"
 
 
