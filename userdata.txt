@@ -1,1 +1,1 @@
-envrionments=ping
+envrionments=stag
