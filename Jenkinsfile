@@ -25,7 +25,7 @@ pipeline {
             env.envrionments = props.envrionments
              }
 
-             sh "envrironment is ${envrionments}"
+             echo  "envrironment is ${envrionments}"
          }
         }
     }
