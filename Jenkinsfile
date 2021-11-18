@@ -1,18 +1,24 @@
 pipeline {
     agent {
-        label "mydesktop"
+        label 'mydesktop'
     }
     stages {
-        stage('gitclone') {
+        stage('gitcchekout') {
             steps {
-//#                 git credentialsId: "${desktop}", url: "https://github.com/irfansheikh777/Jenkins-testing.git"
                    checkout scm
+            }
+        }
 
-                  }
- }
+                stage('conditions') {
+            steps {
 
-
+                new File('userdata.txt').withReader('UTF-8') { reader ->
+                def line
+                while ((line = reader.readLine()) != null) {
+                println "${line}"
+                }
+                }
+            }
+                }
+    }
 }
-
-
-}         
