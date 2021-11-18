@@ -2,7 +2,7 @@ pipeline {
     agent {
         label 'mydesktop'
     }
- 
+
     stages {
         stage('Checkout') {
             steps {
@@ -12,8 +12,7 @@ pipeline {
 
          stage('Configration-Changes') {
             steps {
-                echo "Configuration changes for Dev"
-           
+                echo 'Configuration changes for Dev'
             }
          }
 
@@ -26,8 +25,8 @@ pipeline {
              }
 
              echo  "envrironment is ${envrionments}"
-             env1 =${envrionments}
-             echo ${env1}
+             env1 = ${envrionments}
+             echo "${env1}"
          }
         }
     }
