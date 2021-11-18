@@ -13,7 +13,7 @@ pipeline {
          stage('Configration-Changes') {
             steps {
                 echo "Configuration changes for Dev"
-            //  sh ' envr = $(cat userdata.txt)'
+           
             }
          }
 
@@ -25,7 +25,7 @@ pipeline {
             env.envrionments = props.envrionments
              }
 
-             sh "envrironment is $envrionments"
+             sh "envrironment is ${envrionments}"
          }
         }
     }
