@@ -25,9 +25,18 @@ pipeline {
              }
 
              echo  "envrironment is ${envrionments}"
-             env1 = ${envrionments}
-             echo "${env1}"
          }
         }
+
+         stage('testing read file ') {
+         steps {
+              if (readFile('userdata.txt').contains('dev')) {
+          echo 'present'
+              }
+    else {
+        echo 'absent'
+    }
+         }
+         }
     }
 }
