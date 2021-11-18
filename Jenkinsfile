@@ -26,6 +26,8 @@ pipeline {
              }
 
              echo  "envrironment is ${envrionments}"
+             env1 =${envrionments}
+             echo ${env1}
          }
         }
     }
