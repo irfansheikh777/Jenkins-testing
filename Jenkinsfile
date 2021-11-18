@@ -12,14 +12,16 @@ pipeline {
                 stage('conditions') {
             steps {
             script {
-                new File('userdata.txt').withReader('UTF-8') { reader ->
-                def line
-                while ((line = reader.readLine()) != null) {
-                println "${line}"
-                }
-                }
+
+                 sh "
+                environment = $(cat userdata.txt}
+                echo $environment
+
+                 "
             }
-            }
+                }
+    }
+}
                 }
     }
 }
