@@ -19,9 +19,7 @@ pipeline {
 
         stage('testing stage ') {
          steps {
-               script {
-                readFile('userdata.txt')
-}
+                environ=$(cat userdata.txt)
          }
         }
         
