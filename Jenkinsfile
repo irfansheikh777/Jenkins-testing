@@ -11,7 +11,7 @@ pipeline {
 
          stage('Configration-Changes') {
             steps {
-                // Configuration changes for Dev
+                echo " Configuration changes for Dev"
               //  sh ' envr = $(cat userdata.txt)'
                 
             }
