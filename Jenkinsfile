@@ -3,25 +3,23 @@ pipeline {
         label 'mydesktop'
     }
     stages {
-        stage('gitcchekout') {
+        stage('Checkout') {
             steps {
-                   checkout scm
+                checkout scm
             }
         }
 
-                stage('conditions') {
+         stage('Configration-Changes') {
             steps {
-            
+                // Configuration changes for Dev
+                sh ' cat userdata.txt'
+            }
+         }
 
-                 sh "
-                environment = $(cat userdata.txt}
-                echo $environment
-
-                 "
-            
-                }
-    }
-}
-                }
+        stage('testing stage ') {
+         steps {
+               echo 'testing pipe'
+         }
+        }
     }
 }
