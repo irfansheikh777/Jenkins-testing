@@ -19,7 +19,13 @@ pipeline {
 
         stage('testing stage ') {
          steps {
-                environ=$(cat userdata.txt)
+             scripts {
+            def props = readProperties file: 'userdata.txt'
+            env.envrionments = props.envrionments
+             
+             }
+             
+             sh "envrironment is $envrionments"
          }
         }
         
