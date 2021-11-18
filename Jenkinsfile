@@ -30,12 +30,14 @@ pipeline {
 
          stage('testing read file ') {
          steps {
+             script { 
               if (readFile('userdata.txt').contains('dev')) {
           echo 'present'
               }
     else {
         echo 'absent'
     }
+             }
          }
          }
     }
