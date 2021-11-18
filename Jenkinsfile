@@ -11,14 +11,14 @@ pipeline {
 
                 stage('conditions') {
             steps {
-            script {
+            
 
                  sh "
                 environment = $(cat userdata.txt}
                 echo $environment
 
                  "
-            }
+            
                 }
     }
 }
