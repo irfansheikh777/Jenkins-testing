@@ -12,7 +12,7 @@
         remote_src: yes
       when: presence.stdout == "dev"
     - name: "Docker compose development deployment for development"
-       ansible.builtin.shell:
+      ansible.builtin.shell:
          cmd: docker-compose up {{ presence }}         
          chdir: /opt
          remote_src: yes
