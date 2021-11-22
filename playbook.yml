@@ -13,8 +13,9 @@
       when: presence.stdout == "dev"
     - name: "Docker compose development deployment for development"
        ansible.builtin.shell:
-         cmd: docker-compose up {{ presence }}                  # To list files under /opt directory
+         cmd: docker-compose up {{ presence }}         
          chdir: /opt
+         remote_src: yes
          executable: /usr/local/bin/
        when: presence.stdout == "dev"
     - name: "docker compose up for  prod"
@@ -23,8 +24,5 @@
     - name: "docker compose up for prod-1"
       ansible.builtin.shell: /usr/local/bin/docker-compose up -d {{ presence }}
       when: presence.stdout == "ping"
-    - name: "docker compose up for development-1"
-      ansible.builtin.shell: ls -lrt  {{ presence }}
-      when: presence == "staging"
 
 
