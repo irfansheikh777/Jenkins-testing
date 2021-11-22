@@ -1,1 +1,1 @@
-envrionments=stag
+envrionments=dev
