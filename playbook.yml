@@ -17,7 +17,7 @@
          chdir: /opt
          remote_src: yes
          executable: /usr/local/bin/
-       when: presence.stdout == "dev"
+      when: presence.stdout == "dev"
     - name: "docker compose up for  prod"
       ansible.builtin.shell: docker-compose up  {{ presence }}
       when: presence.stdout == "prod"
