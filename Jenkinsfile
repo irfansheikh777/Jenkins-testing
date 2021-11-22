@@ -31,7 +31,7 @@ pipeline {
              script {
               if (readFile('userdata.txt').contains('dev')) {
               echo 'Running Ansible playbook for development ...'
-                   sh "ansible-playbook  -i host.ini  playbook.yml -e target="dev"
+                   sh "ansible-playbook  -i host.ini  playbook.yml -e target='dev' "
               }
               if (readFile('userdata.txt').contains('stag')) {
                   echo 'Running Ansible playbook for staging ...'
