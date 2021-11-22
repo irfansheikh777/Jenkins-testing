@@ -1,17 +1,29 @@
 ---
-- hosts: "localhost"
+- hosts: " {{ targets }} "
   become: yes
   tasks:
-    - name: find
+    - name: Analyzing environement form file...
       shell: grep -ow 'ping' userdata.txt
       register: presence
-    - name: "docker compose up for dev"
-      ansible.builtin.shell: docker-compose up  {{ presence }}
+    - name: Copy a "docker-compose" file on the remote machine
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: /home/irfanshaikh/ansible/docker-compose.yml
+        remote_src: yes
       when: presence.stdout == "dev"
-    - name: "docker compose up for prod"
+    - name: "Docker compose development deployment for development"
+       ansible.builtin.shell:
+         cmd: docker-compose up {{ presence }}                  # To list files under /opt directory
+         chdir: /opt
+         executable: /usr/local/bin/
+       when: presence.stdout == "dev"
+    - name: "docker compose up for  prod"
+      ansible.builtin.shell: docker-compose up  {{ presence }}
+      when: presence.stdout == "prod"
+    - name: "docker compose up for prod-1"
       ansible.builtin.shell: /usr/local/bin/docker-compose up -d {{ presence }}
       when: presence.stdout == "ping"
-    - name: "docker compose up for development"
+    - name: "docker compose up for development-1"
       ansible.builtin.shell: ls -lrt  {{ presence }}
       when: presence == "staging"
 

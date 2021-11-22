@@ -1,0 +1,18 @@
+---
+- hosts: "localhost"
+  become: yes
+  tasks:
+    - name: find
+      shell: grep -ow 'ping' userdata.txt
+      register: presence
+    - name: "docker compose up for dev"
+      ansible.builtin.shell: docker-compose up  {{ presence }}
+      when: presence.stdout == "dev"
+    - name: "docker compose up for prod"
+      ansible.builtin.shell: /usr/local/bin/docker-compose up -d {{ presence }}
+      when: presence.stdout == "ping"
+    - name: "docker compose up for development"
+      ansible.builtin.shell: ls -lrt  {{ presence }}
+      when: presence == "staging"
+
+
