@@ -35,7 +35,7 @@ pipeline {
               }
               if (readFile('userdata.txt').contains('stag')) {
                   echo 'Running Ansible playbook for staging ...'
-                 sh "ansible-playbook  -i host.ini  playbook.yml -e target="stag"
+                 sh "ansible-playbook  -i host.ini  playbook.yml -e target='stag' "
               }
               else {
                   echo 'Not revelant output   please check your tag file '
